@@ -1,5 +1,12 @@
 *{
   margin: 0%;
   padding: 0%;
-  background-color: darkblue;
+  background-color: #01012f;
+
+  color: white;
+}
+
+button{
+  height: 300px;
+  width: 500px;
 }
