@@ -1,7 +1,7 @@
 import './App.css';
 import {useEffect, useState} from "react";
 import TemperatureSwitch from "./temperatureSwitch";
-// import DataDisplay from "./dataDisplay";
+import DataDisplay from "./dataDisplay";
 
 function App() {
 
@@ -149,7 +149,7 @@ function App() {
       <header className="App-header">
         <h1>Hola</h1>
           <TemperatureSwitch value={buttonText} clickHandle={()=>SetButtonState(!buttonState)}/>
-          {/*<DataDisplay data={objectsToDisplay} SetDegrees={buttonState}/>*/}
+          <DataDisplay data={objectsToDisplay} SetDegrees={buttonState}/>
       </header>
     </div>
   );
