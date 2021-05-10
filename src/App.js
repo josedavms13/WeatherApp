@@ -53,33 +53,31 @@ function App() {
         else {
 
 
-
             console.log(coords);
 
-            const latitude = coords.coords.latitude;
-            const longitude = coords.coords.longitude;
-            const apiKey = '8307e411e1e445f496120926210905';
+            if (coords.code !== 1) {
+                const latitude = coords.coords.latitude;
+                const longitude = coords.coords.longitude;
+                const apiKey = '8307e411e1e445f496120926210905';
 
-            console.log(latitude);
-            console.log(longitude);
+                console.log(latitude);
+                console.log(longitude);
 
-            const url = `http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${latitude},${longitude}&aqi=yes`;
-
-
-
-            //region FETCH WEATHER --------------------------------------
+                const url = `http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${latitude},${longitude}&aqi=yes`;
+                //region FETCH WEATHER --------------------------------------
 
 
-            fetch(url, {
-                method : 'GET',
-            })
-                .then((response) => (response.json()))
-                .then(data => setGlobalObject(data));
+                fetch(url, {
+                    method: 'GET',
+                })
+                    .then((response) => (response.json()))
+                    .then(data => setGlobalObject(data));
 
-            // FETCH WEATHER
-            //endregion
+                //endregion FETCH WEATHER
+
+
+            }
         }
-
 
     },[coords])
 
@@ -263,6 +261,7 @@ function App() {
           <TemperatureSwitch value={buttonText} clickHandle={()=>SetButtonState(!buttonState)}/>
           <Clock />
           <DataDisplay data={objectsToDisplay} SetDegrees={buttonState}/>
+
       </header>
     </div>
   );
