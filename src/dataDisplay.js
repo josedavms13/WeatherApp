@@ -1,3 +1,6 @@
+import './CSS/DataDisplay.css'
+
+
 import {useEffect, useState} from "react";
 
 const DataDisplay = (data) =>{

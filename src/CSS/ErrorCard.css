@@ -1,0 +1,43 @@
+
+.display-none{
+    display: none;
+}
+
+
+.pannel{
+    position: absolute;
+    top: 25vh;
+
+    margin-left: 10vw;
+
+
+    background-color: #1f0208;
+    width: 80%;
+    height: 50%;
+    border: white 2px solid;
+    border-radius: 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.pannel>.error{
+    width: 100%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.pannel>.error>h2{
+    margin-bottom: 30px;
+    font-size: 10vw;
+    padding: 10px;
+    width: 50%;
+    border-bottom: white solid;
+}
+
+.details{
+    padding: 10%;
+}

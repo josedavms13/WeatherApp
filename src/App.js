@@ -1,8 +1,10 @@
 import './App.css';
+import './CSS/ErrorCard.css'
 import {useEffect, useState} from "react";
 import TemperatureSwitch from "./temperatureSwitch";
 import DataDisplay from "./dataDisplay";
 import Clock from "./clock";
+import ErrorHandling from "./errorHandling";
 
 
 function App() {
@@ -22,8 +24,7 @@ function App() {
 
 
 
-
-    //region BEFORE Get user Localization
+    //region GETTING user Localization
 
 
 
@@ -36,7 +37,7 @@ function App() {
 
     },[])
 
-    //endregion
+    //endregion getting user localization
 
     //region AFTER GETTING LOCALIZATION / FETCH   ------------------------------>
 
@@ -52,10 +53,8 @@ function App() {
         // After API response
         else {
 
-
-            console.log(coords);
-
-            if (coords.code !== 1) {
+            // GOT LOCALIZATION RIGHT
+            if (coords.code === undefined) {
                 const latitude = coords.coords.latitude;
                 const longitude = coords.coords.longitude;
                 const apiKey = '8307e411e1e445f496120926210905';
@@ -67,13 +66,19 @@ function App() {
                 //region FETCH WEATHER --------------------------------------
 
 
-                fetch(url, {
-                    method: 'GET',
-                })
-                    .then((response) => (response.json()))
-                    .then(data => setGlobalObject(data));
+                    fetch(url, {
+                        method: 'GET',
+                    })
+                        .then((response) => (response.json()))
+                        .then(data => setGlobalObject(data));
 
                 //endregion FETCH WEATHER
+            }
+
+            // COULDN'T GET LOCALIZATION
+            else{
+
+                setError(coords);
 
 
             }
@@ -81,6 +86,7 @@ function App() {
 
     },[coords])
 
+    const [ gotError , setError] = useState(null);
 
 
     //endregion                                 <------------------------------ after getting localization / fetch
@@ -90,7 +96,10 @@ function App() {
 
     //region DISPLAY SYSTEM             ----------------------------->
 
+        //region HEADER MESSAGES
+            const [headerMessage, setHeaderMessage] = useState('hello')
 
+        //endregion head messages
 
         //region FARENHEITH CELSIUS BUTTON
 
@@ -112,44 +121,79 @@ function App() {
 
         //region GENERAL DISPLAY
 
-    const [objectsToDisplay,setObjectToDisplay] = useState([])
-        useEffect(()=>{
+            const [objectsToDisplay,setObjectToDisplay] = useState([])
+                useEffect(()=>{
 
-            // while passing info
+                    // while passing info
 
-        if(GLOBALOBJECT === null){
-
-
-            //show waiting
-        }
-            // info passed
-
-        else{
+                if(GLOBALOBJECT === null){
 
 
-            setObjectToDisplay([(GLOBALOBJECT) , getMessage(GLOBALOBJECT)]);
+                    //show waiting
+                }
+                    // info passed
 
-            console.log(GLOBALOBJECT);
-
-
-        }
-
-
-        },[GLOBALOBJECT])
+                else{
 
 
+                    setObjectToDisplay([(GLOBALOBJECT) , getMessage(GLOBALOBJECT)]);
+
+                    console.log(GLOBALOBJECT);
+
+                    //region HEADER MESSAGES
+
+                    let time = GLOBALOBJECT.current.last_updated;
+                    time = time.split(' ');
+                    time = Number(time[1].split(':')[0])
+
+                    switch (true){
+
+                        case (time>19 && time<5):
+                            console.log('Night')
+
+                            setHeaderMessage('Good Night, have a nice sleep!')
+                            break
+
+                        case (time > 5 && time < 12):
+                            console.log('morning')
+                            setHeaderMessage('Good Morning!, have a nice day')
+                            break
+
+                        case (time > 12 && time<17):
+                            console.log('afternoon')
+                            setHeaderMessage('Good Afternoon!')
+                            break
+
+                        case (time > 18 && time<19):
+                            console.log('Evening')
+                            setHeaderMessage('Good Evening!')
+                            break
+
+                        default:
+                            break
+                    }
+
+
+                    console.log(time);
+
+                    //endregion head messages
+
+                }
+
+
+                },[GLOBALOBJECT])
 
 
         //endregion general display
 
 
-    //region MESSAGE
+        //region MESSAGE
 
 
-    function getMessage(data) {
+            function getMessage(data) {
 
 
-        //region TO COMMENT
+        //region MESSAGE PICKER
 
         const condition = (data.current.condition.text).toUpperCase();
 
@@ -158,6 +202,7 @@ function App() {
 
         console.log(condition)
 
+        // switch ----
         switch(true){
             case condition.includes('RAIN'):
                 console.log('rainy');
@@ -181,8 +226,8 @@ function App() {
                 break
 
             case condition.includes('OVERCAST'):
-                console.log('claudy')
-                message = "It is not raining.. yet.";
+                console.log('overcast')
+                message = "At least it's not raining.. yet.";
                 break
 
             case condition.includes('MIST'):
@@ -233,38 +278,35 @@ function App() {
         const setMessage = [messageCondition, message];
 
         return setMessage;
-        //
-        // console.log((weatherMessage));
-        //
-        //
-        //endregion tocomment
+
+        //endregion message picker
     }
 
 
-
-
-
-    //endregion message
+        //endregion message
 
 
     //endregion    display system       ---------------------------> display system
 
 
+    return (
+        <div className="App">
+            <header className="App-header">
+                <div className={'header-tittle'}>
+                    <h1>{headerMessage}</h1>
 
+                </div>
 
+                <div className="clock-data-container">
+                    <Clock/>
+                    <DataDisplay data={objectsToDisplay} SetDegrees={buttonState}/>
+                </div>
+                {/*<TemperatureSwitch value={buttonText} clickHandle={()=>SetButtonState(!buttonState)}/>*/}
+                {/*<ErrorHandling info={gotError}/>*/}
 
-
-  return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Hola</h1>
-          <TemperatureSwitch value={buttonText} clickHandle={()=>SetButtonState(!buttonState)}/>
-          <Clock />
-          <DataDisplay data={objectsToDisplay} SetDegrees={buttonState}/>
-
-      </header>
-    </div>
-  );
+            </header>
+        </div>
+    );
 }
 
 export default App;

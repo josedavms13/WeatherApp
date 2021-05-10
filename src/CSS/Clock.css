@@ -1,0 +1,31 @@
+@media (max-width: 300px) {
+    .clock-container > h2 {
+        font-size: 7vw;
+        font-weight: bold;
+    }
+}
+
+@media (max-width: 500px) {
+    .clock-container {
+        border: white solid 1px;
+
+        margin: 10% 5%;
+        padding: 13px;
+
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+
+    }
+
+    .clock-container > h1 {
+        font-size: 20vw;
+        font-weight: normal;
+    }
+
+    .clock-container > h2 {
+        font-size: 3vw;
+        font-weight: normal;
+    }
+
+}

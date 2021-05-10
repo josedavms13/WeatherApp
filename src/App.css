@@ -1,13 +1,32 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;1,400&display=swap');
+
 *{
+  font-family: 'Source Sans Pro', sans-serif;
   transition: all 1s ease;
-  margin: 0%;
-  padding: 0%;
+  margin: 0;
+  padding: 0;
   background-color: #01012f;
 
   color: white;
 }
 
-button{
-  height: 300px;
-  width: 500px;
+
+.header-tittle{
+  height: 20vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.header-tittle>h1{
+  border-bottom: white solid 1px;
+  width: 50%;
+}
+
+
+.clock-data-container{
+  display: flex;
+  flex-direction: column;
 }
