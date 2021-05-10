@@ -49,6 +49,9 @@ function App() {
 
         // After API response
         else {
+
+
+
             console.log(coords);
 
             const latitude = coords.coords.latitude;
@@ -124,7 +127,10 @@ function App() {
             // info passed
 
         else{
-            setObjectToDisplay(GLOBALOBJECT);
+
+
+            setObjectToDisplay([(GLOBALOBJECT) , getMessage(GLOBALOBJECT)]);
+
             console.log(GLOBALOBJECT);
         }
 
@@ -140,6 +146,99 @@ function App() {
     //region MESSAGE
 
 
+    function getMessage(data) {
+
+
+        //region TO COMMENT
+
+        const condition = (data.current.condition.text).toUpperCase();
+
+        let messageCondition = data.current.condition.text;
+        let message = ''
+
+        console.log(condition)
+
+        switch(true){
+            case condition.includes('RAIN'):
+                console.log('rainy');
+
+                message = 'You better take your umbrella.'
+
+                break
+            case condition.includes('SUN'):
+                console.log('sun');
+
+                message = 'It is a beautiful day, but avoid sun burns.'
+
+                break
+            case condition.includes('SHOWER'):
+                console.log('shower')
+                message = "Be careful and don't forget your coat and umbrella."
+                break
+            case condition.includes('CLOUDY'):
+                console.log('claudy')
+                message = "Perfect for a coffee!."
+                break
+
+            case condition.includes('OVERCAST'):
+                console.log('claudy')
+                message = "It is not raining.. yet.";
+                break
+
+            case condition.includes('MIST'):
+                console.log('mist');
+                message = "Be careful if you will drive."
+                break
+
+            case condition.includes('SNOW'):
+                console.log('snow')
+                message = "If possible, stay at home and watch some series"
+                break
+
+            case condition.includes('SLEET'):
+                console.log('sleet');
+                message = "Be careful. It's easy to fall"
+                break
+            case condition.includes('FREEZING'):
+                message = "Get a hot drink and stay at home."
+                console.log('freezing')
+                break
+            case condition.includes('THUNDERY'):
+                console.log('Thundery');
+                message = "Sounds scary"
+                break
+            case condition.includes('BLIZZARD'):
+                message = "Stay aware at news!"
+                console.log('Blizzard')
+                break
+            case condition.includes('FOG'):
+                console.log('Fog');
+                message = "You may have limited visibility. Be Careful."
+                break
+            case condition.includes('DRIZZLE'):
+                console.log('drizzle');
+                message ="Don't forget your umbrella";
+                break
+            case condition.includes('ICE'):
+                message = "it's freezing outside"
+                console.log('Ice')
+                break
+
+            default :
+                message = "It's seems to be the end of the world, none of the weather matches..."
+                break
+
+        }
+
+        const setMessage = [messageCondition, message];
+
+        return setMessage;
+        //
+        // console.log((weatherMessage));
+        //
+        //
+        //endregion tocomment
+    }
 
 
 
