@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 
 const DataDisplay = (data) =>{
 
-    console.log(data.data);
+    // console.log(data.data);
 
     const [grades, setGrades] = useState(`loading...`)
     const [message, setMessage] = useState(['loading...', 'loading...'])

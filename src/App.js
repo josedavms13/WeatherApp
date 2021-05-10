@@ -2,6 +2,8 @@ import './App.css';
 import {useEffect, useState} from "react";
 import TemperatureSwitch from "./temperatureSwitch";
 import DataDisplay from "./dataDisplay";
+import Clock from "./clock";
+
 
 function App() {
 
@@ -76,8 +78,6 @@ function App() {
 
             // FETCH WEATHER
             //endregion
-
-
         }
 
 
@@ -132,6 +132,8 @@ function App() {
             setObjectToDisplay([(GLOBALOBJECT) , getMessage(GLOBALOBJECT)]);
 
             console.log(GLOBALOBJECT);
+
+
         }
 
 
@@ -247,10 +249,6 @@ function App() {
     //endregion message
 
 
-
-
-
-
     //endregion    display system       ---------------------------> display system
 
 
@@ -263,6 +261,7 @@ function App() {
       <header className="App-header">
         <h1>Hola</h1>
           <TemperatureSwitch value={buttonText} clickHandle={()=>SetButtonState(!buttonState)}/>
+          <Clock />
           <DataDisplay data={objectsToDisplay} SetDegrees={buttonState}/>
       </header>
     </div>
