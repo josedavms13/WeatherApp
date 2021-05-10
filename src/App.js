@@ -134,10 +134,25 @@ function App() {
 
 
 
-        //endregion
+        //endregion general display
 
 
-    //endregion                              ---------------------------> display system
+    //region MESSAGE
+
+
+
+
+
+
+
+    //endregion message
+
+
+
+
+
+
+    //endregion    display system       ---------------------------> display system
 
 
 
