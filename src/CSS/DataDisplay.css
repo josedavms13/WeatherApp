@@ -1,6 +1,5 @@
 .display-container{
     font-size: 100%;
-    /*background-color: crimson;*/
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -9,7 +8,6 @@
 }
 
 .current-temperature-container{
-    /*background-color: black;*/
     width: 50%;
     height: 30vh;
     display: flex;
@@ -34,5 +32,4 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /*background-color: white;*/
 }
