@@ -1,0 +1,90 @@
+@media (max-width: 300px) {
+    .clock-container > h2 {
+        font-size: 7vw;
+        font-weight: bold;
+    }
+}
+
+@media (max-width: 500px) {
+    .clock-container {
+        border: white solid 1px;
+
+        margin: 10% 5%;
+        padding: 13px;
+
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+
+
+
+    }
+
+    .clock-container > h1 {
+        font-size: 20vw;
+        font-weight: normal;
+    }
+
+    .clock-container > h2 {
+        font-size: 3vw;
+        font-weight: normal;
+    }
+
+}
+
+@media (min-width: 501px) {
+
+    .header-tittle{
+        margin-bottom: 5vh;
+    }
+    .App{
+        padding-top: 15vh;
+    }
+
+    .clock-data-container{
+        display: flex;
+        flex-direction: row;
+        width: 100vw;
+    }
+    .clock-container{
+        width: 50vw;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 30px;
+    }
+
+    .clock-container>h1{
+        font-size: 10vw;
+
+    }
+
+    .clock-container>h2{
+        font-size: 2vw;
+        font-weight: normal;
+        margin-left: 1vw;
+    }
+
+    .temperature-label{
+
+        width: 50vw;
+    }
+
+    .display-container{
+        border: white solid 1px;
+        margin: 2vw;
+        padding-top: 30px;
+
+
+    }
+
+    button{
+        position: absolute;
+        bottom: 5vh;
+        right: 2vw;
+    }
+}
+
+.header-tittle{
+    font-size: 70%;
+}

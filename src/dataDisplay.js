@@ -1,68 +1,94 @@
-import {useEffect, useState} from "react";
 
+
+import {useEffect, useState} from "react";
 
 const DataDisplay = (data) =>{
 
+    const [grades, setGrades] = useState(`loading...`)
+    const [message, setMessage] = useState(['loading...', 'loading...'])
+    const [icon, setIcon] = useState(null)
 
-    console.log(data)
+    const [city, setCity] = useState('loading...')
+    const [region, setRegion] = useState('loading...')
+    const [country, setCountry] = useState('loading...')
 
 
-    //region SET TEMPERATURE
-
-
-    const [temperature, setTemperature] = useState(`${data.data.current.temp_c}º C`)
 
     useEffect(()=>{
 
-        if(data.SetDegrees){
-            setTemperature(`${data.data.current.temp_f}º F`);
+        if (data.data.length !== 0) {
 
-            console.log(temperature)
+            // region SET TEMPERATURE
+            if (data.SetDegrees) {
+                setGrades(`${data.data[0].current.temp_c}ºC`);
+            } else {
+                setGrades(`${data.data[0].current.temp_f}ºF`);
+            }
+            // endregion set temperature
+
+            //region SET MESSAGE
+
+            setMessage(data.data[1]);
+
+
+            //endregion set message
+
+            //region SET ICON
+
+            setIcon(data.data[0].current.condition.icon)
+
+            //endregion set icon
+
+            //region SET PLACE
+
+
+            setCity(data.data[0].location.name)
+            setRegion(data.data[0].location.region)
+            setCountry(data.data[0].location.country)
+
+
+
+            //endregion set place
+
+            //region SET COLOR
+
+
+
+            //endregion set color
         }
-        else{
-            setTemperature(`${data.data.current.temp_c}º C`);
-            console.log(temperature)
-        }
-
-    },[data])
-
-
-    //endregion set temperature
-
-
-    //region WEATHER MESSAGE
-
-    const[weatherMessage, setMessage]= useState('');
-
-    function setConditionMessage(data){
-
-        const condition = data.data.current.condition.text;
-
-        if(condition.includes('rain')){
-            const message = `${condition}, take an umbrella`;
-
-            setMessage(message);
-        }
-    }
-    //endregion weather message
+    }, [data])
 
     return(
 
         <div className={'display-container'}>
 
             <div className={'place-label'}>
-                <h4>YOU ARE IN</h4>
-                <h5>
-                    {`${data.data.location.name}, ${data.data.location.region}, ${(data.data.location.country).toUpperCase()}`}
-                </h5>
+                <h4>HERE IN <span>{city}, {region}</span></h4>
+                <h5>{country}</h5>
+
+
+
             </div>
 
             <div className={'temperature-label'}>
 
-                <h4>Right now it is at</h4>
-                <h3>{temperature}</h3>
-                <h5>It is </h5>
-                {/*<h4>{weatherMessage}</h4>*/}
+                <div className="current-temperature-container">
+
+                    <div className="grades-container">
+
+                        <h4>Right now it is at </h4>
+                        <h5>{grades}</h5>
+                    </div>
+
+                    <h4>it is {message[0]}</h4>
+                    <h5>{message[1]}</h5>
+
+                </div>
+
+                <div className="icon-container">
+                    <img src={icon} alt={message[0]}/>
+                </div>
+
 
             </div>
 
