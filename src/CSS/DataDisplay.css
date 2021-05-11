@@ -1,0 +1,38 @@
+.display-container{
+    font-size: 100%;
+    /*background-color: crimson;*/
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    height: 50%;
+}
+
+.current-temperature-container{
+    /*background-color: black;*/
+    width: 50%;
+    height: 30vh;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.grades-container{
+    border-bottom: white solid 2px;
+    margin: 20px;
+    padding: 10px
+}
+
+.temperature-label{
+    display: flex;
+}
+
+.icon-container{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /*background-color: white;*/
+}

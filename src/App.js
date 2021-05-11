@@ -1,5 +1,8 @@
 import './App.css';
 import './CSS/ErrorCard.css'
+import './CSS/DataDisplay.css'
+
+
 import {useEffect, useState} from "react";
 import TemperatureSwitch from "./temperatureSwitch";
 import DataDisplay from "./dataDisplay";
@@ -301,8 +304,8 @@ function App() {
                     <Clock/>
                     <DataDisplay data={objectsToDisplay} SetDegrees={buttonState}/>
                 </div>
-                {/*<TemperatureSwitch value={buttonText} clickHandle={()=>SetButtonState(!buttonState)}/>*/}
-                {/*<ErrorHandling info={gotError}/>*/}
+                <TemperatureSwitch value={buttonText} clickHandle={()=>SetButtonState(!buttonState)}/>
+                <ErrorHandling info={gotError}/>
 
             </header>
         </div>

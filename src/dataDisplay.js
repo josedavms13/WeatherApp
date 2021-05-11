@@ -1,15 +1,19 @@
-import './CSS/DataDisplay.css'
 
 
 import {useEffect, useState} from "react";
 
 const DataDisplay = (data) =>{
 
-    // console.log(data.data);
+    console.log(data.data);
 
     const [grades, setGrades] = useState(`loading...`)
     const [message, setMessage] = useState(['loading...', 'loading...'])
     const [icon, setIcon] = useState(null)
+
+    const [city, setCity] = useState('loading...')
+    const [region, setRegion] = useState('loading...')
+    const [country, setCountry] = useState('loading...')
+
 
     useEffect(()=>{
 
@@ -35,6 +39,17 @@ const DataDisplay = (data) =>{
             setIcon(data.data[0].current.condition.icon)
 
             //endregion set icon
+
+            //region SET PLACE
+
+            console.log(data.data[0].location.name)
+
+            setCity(data.data[0].location.name)
+            setRegion(data.data[0].location.region)
+
+
+
+            //endregion set place
         }
     }, [data])
 
@@ -43,20 +58,31 @@ const DataDisplay = (data) =>{
         <div className={'display-container'}>
 
             <div className={'place-label'}>
-                <h4>YOU ARE IN</h4>
-                <h5>
-                    {}
-                </h5>
+                <h4>HERE IN <span>{city}, {region}</span></h4>
+
+
+
             </div>
 
             <div className={'temperature-label'}>
 
-                <h4>Right now it is at</h4>
-                <h3>{grades}</h3>
-                <h5>It is </h5>
-                <h4>{message[0]}</h4>
-                <h5>{message[1]}</h5>
-                <img src={icon} alt={message[0]}/>
+                <div className="current-temperature-container">
+
+                    <div className="grades-container">
+
+                        <h4>Right now it is at </h4>
+                        <h5>{grades}</h5>
+                    </div>
+
+                    <h4>it is {message[0]}</h4>
+                    <h5>{message[1]}</h5>
+
+                </div>
+
+                <div className="icon-container">
+                    <img src={icon} alt={message[0]}/>
+                </div>
+
 
             </div>
 
