@@ -20,7 +20,7 @@ const Clock =()=>{
             setDate(dateTime.toDateString())
             setTime((dateTime.toTimeString()).slice(0,8))
 
-            // console.log(dateTime);
+
 
 
         },1000)

@@ -8,6 +8,7 @@ import TemperatureSwitch from "./temperatureSwitch";
 import DataDisplay from "./dataDisplay";
 import Clock from "./clock";
 import ErrorHandling from "./errorHandling";
+import Background from "./background";
 
 
 function App() {
@@ -47,9 +48,6 @@ function App() {
     useEffect(()=>{
         // Waiting from API
         if(coords === null) {
-            console.log('waiting');
-
-            // Show waiting card            console.log(coords);
 
         }
 
@@ -62,8 +60,6 @@ function App() {
                 const longitude = coords.coords.longitude;
                 const apiKey = '8307e411e1e445f496120926210905';
 
-                console.log(latitude);
-                console.log(longitude);
 
                 const url = `http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${latitude},${longitude}&aqi=yes`;
                 //region FETCH WEATHER --------------------------------------
@@ -111,10 +107,9 @@ function App() {
 
             useEffect(()=>{
                 if(buttonState){
-                    // console.log('true')
+
                     setButtonText('Switch to Celsius')
                 }else {
-                    // console.log('false')
                     setButtonText('Switch to Farenheith')
                 }
             },[buttonState])
@@ -124,24 +119,26 @@ function App() {
 
         //region GENERAL DISPLAY
 
+
+            //  Set info to display
             const [objectsToDisplay,setObjectToDisplay] = useState([])
+
                 useEffect(()=>{
 
-                    // while passing info
-
-                if(GLOBALOBJECT === null){
 
 
-                    //show waiting
+                    if(GLOBALOBJECT === null){
+
+
+                    // waiting
                 }
-                    // info passed
+
 
                 else{
 
 
                     setObjectToDisplay([(GLOBALOBJECT) , getMessage(GLOBALOBJECT)]);
 
-                    console.log(GLOBALOBJECT);
 
                     //region HEADER MESSAGES
 
@@ -151,24 +148,20 @@ function App() {
 
                     switch (true){
 
-                        case (time>19 && time<5):
-                            console.log('Night')
+                        case (time>19):
 
                             setHeaderMessage('Good Night, have a nice sleep!')
                             break
 
-                        case (time > 5 && time < 12):
-                            console.log('morning')
+                        case (time > 5 ):
                             setHeaderMessage('Good Morning!, have a nice day')
                             break
 
-                        case (time > 12 && time<17):
-                            console.log('afternoon')
+                        case (time > 12 ):
                             setHeaderMessage('Good Afternoon!')
                             break
 
-                        case (time > 18 && time<19):
-                            console.log('Evening')
+                        case (time > 18):
                             setHeaderMessage('Good Evening!')
                             break
 
@@ -176,8 +169,6 @@ function App() {
                             break
                     }
 
-
-                    console.log(time);
 
                     //endregion head messages
 
@@ -203,73 +194,58 @@ function App() {
         let messageCondition = data.current.condition.text;
         let message = ''
 
-        console.log(condition)
 
         // switch ----
         switch(true){
             case condition.includes('RAIN'):
-                console.log('rainy');
 
                 message = 'You better take your umbrella.'
 
                 break
             case condition.includes('SUN'):
-                console.log('sun');
 
                 message = 'It is a beautiful day, but avoid sun burns.'
 
                 break
             case condition.includes('SHOWER'):
-                console.log('shower')
                 message = "Be careful and don't forget your coat and umbrella."
                 break
             case condition.includes('CLOUDY'):
-                console.log('claudy')
                 message = "Perfect for a coffee!."
                 break
 
             case condition.includes('OVERCAST'):
-                console.log('overcast')
                 message = "At least it's not raining.. yet.";
                 break
 
             case condition.includes('MIST'):
-                console.log('mist');
                 message = "Be careful if you will drive."
                 break
 
             case condition.includes('SNOW'):
-                console.log('snow')
                 message = "If possible, stay at home and watch some series"
                 break
 
             case condition.includes('SLEET'):
-                console.log('sleet');
                 message = "Be careful. It's easy to fall"
                 break
             case condition.includes('FREEZING'):
                 message = "Get a hot drink and stay at home."
-                console.log('freezing')
                 break
             case condition.includes('THUNDERY'):
-                console.log('Thundery');
                 message = "Sounds scary"
                 break
             case condition.includes('BLIZZARD'):
                 message = "Stay aware at news!"
-                console.log('Blizzard')
                 break
             case condition.includes('FOG'):
-                console.log('Fog');
                 message = "You may have limited visibility. Be Careful."
                 break
             case condition.includes('DRIZZLE'):
-                console.log('drizzle');
                 message ="Don't forget your umbrella";
                 break
             case condition.includes('ICE'):
                 message = "it's freezing outside"
-                console.log('Ice')
                 break
 
             default :
@@ -294,6 +270,7 @@ function App() {
 
     return (
         <div className="App">
+            <Background />
             <header className="App-header">
                 <div className={'header-tittle'}>
                     <h1>{headerMessage}</h1>

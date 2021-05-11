@@ -1,0 +1,33 @@
+.bg{
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #4e1200;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+}
+
+.night{
+    background-color: black;
+}
+
+.pre-sunrise{
+    background-color: #00002d;
+}
+
+.morning{
+    background-color: #4e4600;
+}
+
+.afternoon{
+    background-color: #4e3400;
+}
+
+.evening{
+    background-color: #4e1200;
+}
+
+.default{
+    background-color: #00005c;
+}

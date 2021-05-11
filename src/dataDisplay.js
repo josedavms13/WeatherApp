@@ -4,8 +4,6 @@ import {useEffect, useState} from "react";
 
 const DataDisplay = (data) =>{
 
-    console.log(data.data);
-
     const [grades, setGrades] = useState(`loading...`)
     const [message, setMessage] = useState(['loading...', 'loading...'])
     const [icon, setIcon] = useState(null)
@@ -13,6 +11,7 @@ const DataDisplay = (data) =>{
     const [city, setCity] = useState('loading...')
     const [region, setRegion] = useState('loading...')
     const [country, setCountry] = useState('loading...')
+
 
 
     useEffect(()=>{
@@ -42,14 +41,20 @@ const DataDisplay = (data) =>{
 
             //region SET PLACE
 
-            console.log(data.data[0].location.name)
 
             setCity(data.data[0].location.name)
             setRegion(data.data[0].location.region)
+            setCountry(data.data[0].location.country)
 
 
 
             //endregion set place
+
+            //region SET COLOR
+
+
+
+            //endregion set color
         }
     }, [data])
 
@@ -59,6 +64,7 @@ const DataDisplay = (data) =>{
 
             <div className={'place-label'}>
                 <h4>HERE IN <span>{city}, {region}</span></h4>
+                <h5>{country}</h5>
 
 
 

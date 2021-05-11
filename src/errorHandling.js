@@ -13,7 +13,7 @@ const ErrorHandling = (info)=>{
 
     useEffect(()=>{
 
-        console.log(info);
+
 
 
 
@@ -27,7 +27,7 @@ const ErrorHandling = (info)=>{
             switch (info.info.code){
 
                 case 1:
-                    setErrorMessage('Please allow localisation in your browser')
+                    setErrorMessage('Please allow localization in your browser')
                     break
 
                 case 2:
