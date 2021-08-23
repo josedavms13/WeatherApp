@@ -61,7 +61,7 @@ function App() {
                 const apiKey = '8307e411e1e445f496120926210905';
 
 
-                const url = `http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${latitude},${longitude}&aqi=yes`;
+                const url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${latitude},${longitude}&aqi=yes`;
                 //region FETCH WEATHER --------------------------------------
 
 
