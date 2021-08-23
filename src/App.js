@@ -253,7 +253,7 @@ function App() {
                 break
 
         }
-        
+
         return [messageCondition, message];
 
         //endregion message picker
