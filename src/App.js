@@ -148,20 +148,20 @@ function App() {
 
                     switch (true){
 
-                        case (time>19):
+                        case (time>19 && time < 5):
 
                             setHeaderMessage('Good Night, have a nice sleep!')
                             break
 
-                        case (time > 5 ):
+                        case (time > 5 && time < 12):
                             setHeaderMessage('Good Morning!, have a nice day')
                             break
 
-                        case (time > 12 ):
+                        case (time > 12 && time < 18):
                             setHeaderMessage('Good Afternoon!')
                             break
 
-                        case (time > 18):
+                        case (time > 18 && time < 19):
                             setHeaderMessage('Good Evening!')
                             break
 
@@ -192,7 +192,7 @@ function App() {
         const condition = (data.current.condition.text).toUpperCase();
 
         let messageCondition = data.current.condition.text;
-        let message = ''
+        let message;
 
 
         // switch ----
@@ -253,10 +253,8 @@ function App() {
                 break
 
         }
-
-        const setMessage = [messageCondition, message];
-
-        return setMessage;
+        
+        return [messageCondition, message];
 
         //endregion message picker
     }
